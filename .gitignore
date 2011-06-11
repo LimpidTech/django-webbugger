@@ -9,3 +9,7 @@ include/*
 # Files built by pip
 build/*
 
+# Distutils files
+dist/*
+*.egg-info
+
