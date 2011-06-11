@@ -17,11 +17,14 @@ for filename in meta_files:
     except IOError:
         raise IOError('{0} not found.'.format(filename))
 
+classifiers = meta_files['CLASSIFIERS.txt'].split('\n')
+classifiers.remove('')
+
 setup(name='django-webbugger',
       version='0.1',
       description='Basic webbugger/tracking beacon for django',
       long_description=meta_files['README.md'],
-      classifiers=meta_files['CLASSIFIERS.txt'],
+      classifiers=classifiers,
       author='Brandon R. Stoner',
       author_email='monokrome@limpidtech.com',
       url='http://limpidtech.com',
