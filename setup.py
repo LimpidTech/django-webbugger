@@ -6,7 +6,7 @@ setup(name='django-webbugger',
       description='Basic webbugger/tracking beacon for django',
       author='Brandon R. Stoner',
       author_email='monokrome@monokro.me',
-      url='http://monokro.me/',  # This needs updated once my site is active.
+      url='http://monokro.me/',
       packages=['webbugger'],
 )
 
