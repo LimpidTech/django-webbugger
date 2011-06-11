@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(name='django-webbugger',
       version='0.1',
@@ -7,7 +7,6 @@ setup(name='django-webbugger',
       author='Brandon R. Stoner',
       author_email='monokrome@monokro.me',
       url='http://monokro.me/',
-      packages=['webbugger'],
+      packages=find_packages(),
 )
-
 
