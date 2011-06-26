@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from setuptools import setup, find_packages
+from distutils.core import setup
 import os
 
 parent_directory = os.path.abspath(os.path.dirname(__file__))
@@ -28,9 +28,7 @@ setup(name='django-webbugger',
       author='Brandon R. Stoner',
       author_email='monokrome@limpidtech.com',
       url='http://github.com/LimpidTech/django-webbugger',
-      packages=find_packages(),
+      packages=['webbugger'],
       keywords = 'web django tracking',
-      include_package_data = True,
-      zip_safe = False,
 )
 
