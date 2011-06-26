@@ -21,7 +21,7 @@ classifiers = meta_files['CLASSIFIERS.txt'].split('\n')
 classifiers.remove('')
 
 setup(name='django-webbugger',
-      version='0.1',
+      version='0.11-distutils',
       description='Basic webbugger/tracking beacon for django',
       long_description=meta_files['README.md'],
       classifiers=classifiers,
