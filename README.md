@@ -1,7 +1,7 @@
 # django webbugger
 #### Brandon R. Stoner <monokrome@monokro.me>
 
-# What is this?
+## What is this?
 
 Django-Webbugger is a simple application that can be used to track visitors to
 your website. It uses the django content-types framework to allow the most
