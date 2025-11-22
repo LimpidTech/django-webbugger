@@ -1,0 +1,98 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "django-webbugger"
+version = "1.0.0"
+description = "A tracking beacon library for Django applications"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Brandon R. Stoner", email = "monokrome@limpidtech.com" }
+]
+keywords = ["django", "tracking", "beacon", "analytics", "web"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Page Counters",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Topic :: System :: Logging",
+    "Typing :: Typed",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "django>=4.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.0",
+    "django-stubs>=4.0",
+    "pytest>=7.0",
+    "pytest-django>=4.0",
+    "ruff>=0.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/LimpidTech/django-webbugger"
+Repository = "https://github.com/LimpidTech/django-webbugger"
+Issues = "https://github.com/LimpidTech/django-webbugger/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["webbugger"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+plugins = ["mypy_django_plugin.main"]
+exclude = ["migrations"]
+
+[[tool.mypy.overrides]]
+module = "webbugger.*"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.django-stubs]
+django_settings_module = "tests.settings"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # Pyflakes
+    "I",     # isort
+    "B",     # flake8-bugbear
+    "C4",    # flake8-comprehensions
+    "UP",    # pyupgrade
+    "ARG",   # flake8-unused-arguments
+    "SIM",   # flake8-simplify
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["webbugger"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+python_files = ["test_*.py", "*_test.py"]

@@ -1,58 +1,43 @@
-from django.conf.urls.defaults import *
-from models import IPEntity
-# from YOUR_TARGET_MODELS import YOUR_TARGET_MODEL as YourTarget
+"""URL configuration for webbugger.
 
-####
-# In order to use the demo URLs, you need to import something that has
-# implemented the standard get_absolute_url(), or get_beacon_url(). To
-# use these exact URLs you will import the model as YourTarget. An example
-# line is included above to show you how to import this properly.
-#
-# It is best that you simply learn how the URLs are set up so that you can
-# write your own URLs with your own models for the beacons.
-#
-# A target chooses where an entity is redirected. Usually, a client is
-# an entity - however this isn't completely "enforced" by the library.
-####
+Example URL patterns for setting up beacon tracking.
 
-urlpatterns = patterns('webbugger.views',
-    # Receives a target ID
-    url(r'^(?P<target_id>\d+)/$', 'trigger',
-        {'target_type': YourTarget},
-        name='webbugger_beacon_trigger'
-    ),
+Usage:
+    1. Import the trigger view
+    2. Create URL patterns with your desired configuration
+    3. Include these patterns in your main urls.py
 
-    # Receives a target, and a possibly pre-existing entity ID.
-    url(r'^(?P<target_id>\d+)/e(?P<entity_id>\d+)/$', 'trigger',
-        {
-            'target_type': YourTarget,
-            'entity_type': IPEntity,
-        },
-        name='webbugger_beacon_trigger'
-    ),
-)
+Example:
+    from django.urls import path
+    from webbugger.views import trigger
+    from webbugger.models import IPEntity
 
-#### YOU CAN USE THESE FORMATS IF YOU NEED TO PASS A "SOURCE".
-#### I use marketing "campaigns" as sources. You could also used
-#### affiliates or something completely different.
+    urlpatterns = [
+        # Simple redirect tracking
+        path(
+            "go/<path:target_url>/",
+            trigger,
+            name="webbugger_redirect",
+        ),
 
-# Receives a target, and source ID.
-#    url(r'^(?P<target_id>\d+)/s(?P<source_id>\d+)/$', 'trigger',
-#        {
-#            'target_type': DemoTarget,
-#            'source_type': YourSource,
-#        },
-#        name='webbugger_beacon_trigger'
-#    ),
+        # Pixel tracking with IP entity
+        path(
+            "pixel/<int:entity_id>/",
+            trigger,
+            {"entity_class": IPEntity, "pixel": True},
+            name="webbugger_pixel",
+        ),
+    ]
+"""
 
-# Receives a target, source, and entity ID.
-#    url(r'^(?P<target_id>\d+)/(?P<source_id>\d+)/(?P<entity_id>\d+)/$',
-#        'trigger',
-#        {
-#            'target_type': DemoTarget,
-#            'source_type': YourSource,
-#            'entity_type': IPEntity
-#        },
-#        name='webbugger_beacon_trigger'
-#    ),
+from __future__ import annotations
 
+from typing import Any
+
+from django.urls import path
+
+app_name = "webbugger"
+
+# Empty urlpatterns - users should define their own patterns
+# See module docstring for examples
+urlpatterns: list[Any] = []
